@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import MapComponent from "@/components/MapComponent";
 
 /**
  * Commuter Dashboard (Main Page)
@@ -25,6 +26,42 @@ import { useState } from "react";
  */
 export default function CommuterDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  
+  // Sample data - replace with real data from your backend
+  const sampleJeepneys = [
+    {
+      id: '1',
+      position: { lat: 10.3157, lng: 123.8854 },
+      plateNumber: 'ABC 123',
+      route: 'Route 04B',
+      availableSeats: 12
+    },
+    {
+      id: '2',
+      position: { lat: 10.3200, lng: 123.8900 },
+      plateNumber: 'XYZ 789',
+      route: 'Route 10H',
+      availableSeats: 5
+    }
+  ];
+
+  const sampleRoutes = [
+    {
+      id: 'route1',
+      name: 'Route 04B',
+      color: '#EF4444',
+      path: [
+        { lat: 10.3157, lng: 123.8854 },
+        { lat: 10.3200, lng: 123.8900 },
+        { lat: 10.3250, lng: 123.8950 }
+      ]
+    }
+  ];
+
+  const handleJeepneyClick = (jeepney: any) => {
+    console.log('Jeepney clicked:', jeepney);
+    // You can add logic to show details, navigate, etc.
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -161,34 +198,13 @@ export default function CommuterDashboard() {
             </div>
           </button>
 
-          {/* Placeholder for Google Map */}
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-4">🗺️</div>
-              <h3 className="text-2xl font-bold text-gray-700 mb-2">
-                Google Map View
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Live jeepney positions will be displayed here
-              </p>
-              <div className="space-y-2 text-sm text-gray-500">
-                <p>• Jeepney route overlays</p>
-                <p>• Real-time jeepney markers</p>
-                <p>• Seat availability indicators</p>
-                <p>• Interactive map controls</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Floating Info Card - Example */}
-          <div className="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-4 max-w-xs">
-            <p className="text-sm text-gray-600 mb-2">
-              Click on any jeepney marker to view details
-            </p>
-            <div className="flex items-center gap-2 text-sm">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-700">Live tracking active</span>
-            </div>
+          {/* Google Map */}
+          <div className="w-full h-full">
+            <MapComponent 
+              jeepneys={sampleJeepneys}
+              routes={sampleRoutes}
+              onJeepneyClick={handleJeepneyClick}
+            />
           </div>
         </main>
       </div>
