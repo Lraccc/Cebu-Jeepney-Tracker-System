@@ -38,25 +38,25 @@ export default function AdminDashboard() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-indigo-600">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-red-900">
               🛠️ Admin Dashboard
             </h1>
             <nav className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 w-full sm:w-auto">
               <Link 
                 href="/admin/routes" 
-                className="px-2 sm:px-3 md:px-4 py-2 text-xs sm:text-sm md:text-base text-gray-700 hover:text-indigo-600 transition"
+                className="px-2 sm:px-3 md:px-4 py-2 text-xs sm:text-sm md:text-base text-gray-700 hover:text-red-900 transition"
               >
                 Routes
               </Link>
               <Link 
                 href="/admin/jeepneys" 
-                className="px-2 sm:px-3 md:px-4 py-2 text-xs sm:text-sm md:text-base text-gray-700 hover:text-indigo-600 transition"
+                className="px-2 sm:px-3 md:px-4 py-2 text-xs sm:text-sm md:text-base text-gray-700 hover:text-red-900 transition"
               >
                 Jeepneys
               </Link>
               <Link 
                 href="/commuter" 
-                className="px-2 sm:px-3 md:px-4 py-2 text-xs sm:text-sm md:text-base text-gray-700 hover:text-indigo-600 transition hidden md:inline"
+                className="px-2 sm:px-3 md:px-4 py-2 text-xs sm:text-sm md:text-base text-gray-700 hover:text-red-900 transition hidden md:inline"
               >
                 View Map
               </Link>
@@ -167,12 +167,12 @@ export default function AdminDashboard() {
           {/* Route Management */}
           <Link
             href="/admin/routes"
-            className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-lg p-8 hover:shadow-xl transition group"
+            className="bg-gradient-to-br from-red-900 to-red-800 text-white rounded-lg shadow-lg p-8 hover:shadow-xl transition group"
           >
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-2xl font-bold mb-2">Route Management</h3>
-                <p className="text-blue-100">
+                <p className="text-red-100">
                   Manage jeepney routes, waypoints, and route assignments
                 </p>
               </div>
@@ -180,7 +180,7 @@ export default function AdminDashboard() {
                 🛣️
               </div>
             </div>
-            <div className="flex items-center gap-2 text-blue-100 font-medium">
+            <div className="flex items-center gap-2 text-red-100 font-medium">
               <span>Manage Routes</span>
               <span>→</span>
             </div>
@@ -189,12 +189,12 @@ export default function AdminDashboard() {
           {/* Jeepney Management */}
           <Link
             href="/admin/jeepneys"
-            className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg shadow-lg p-8 hover:shadow-xl transition group"
+            className="bg-gradient-to-br from-amber-600 to-amber-700 text-white rounded-lg shadow-lg p-8 hover:shadow-xl transition group"
           >
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-2xl font-bold mb-2">Jeepney Management</h3>
-                <p className="text-green-100">
+                <p className="text-amber-100">
                   Manage jeepney units, assign drivers, and control fleet status
                 </p>
               </div>
@@ -202,7 +202,7 @@ export default function AdminDashboard() {
                 🚌
               </div>
             </div>
-            <div className="flex items-center gap-2 text-green-100 font-medium">
+            <div className="flex items-center gap-2 text-amber-100 font-medium">
               <span>Manage Jeepneys</span>
               <span>→</span>
             </div>

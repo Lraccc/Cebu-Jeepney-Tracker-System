@@ -82,13 +82,13 @@ export default function RouteSelectionPage() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="text-base sm:text-lg md:text-xl font-bold text-indigo-600 hover:text-indigo-700">
+            <Link href="/" className="text-base sm:text-lg md:text-xl font-bold text-red-900 hover:text-red-800">
               🚌 Cebu Jeepney Tracker
             </Link>
             <nav className="flex gap-2 sm:gap-4">
               <Link 
                 href="/commuter" 
-                className="px-2 sm:px-4 py-2 text-sm sm:text-base text-gray-700 hover:text-indigo-600 transition"
+                className="px-2 sm:px-4 py-2 text-sm sm:text-base text-gray-700 hover:text-red-900 transition"
               >
                 <span className="hidden sm:inline">Map View</span>
                 <span className="sm:hidden">Map</span>
@@ -120,7 +120,7 @@ export default function RouteSelectionPage() {
           <input
             type="text"
             placeholder="Search routes by name or location..."
-            className="w-full max-w-md px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full max-w-md px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-900 focus:border-red-900"
           />
         </div>
 
@@ -184,7 +184,7 @@ export default function RouteSelectionPage() {
                 href={`/commuter?route=${route.id}`}
                 className={`block w-full py-2 px-4 rounded-lg text-center font-medium transition ${
                   route.activeJeepneys > 0
-                    ? 'bg-indigo-600 text-white hover:bg-indigo-700'
+                    ? 'bg-red-900 text-white hover:bg-red-800'
                     : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                 }`}
               >
@@ -203,19 +203,19 @@ export default function RouteSelectionPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-indigo-600 mb-1">
+              <div className="text-3xl font-bold text-red-900 mb-1">
                 {routes.length}
               </div>
               <div className="text-sm text-gray-600">Total Routes</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-1">
+              <div className="text-3xl font-bold text-amber-600 mb-1">
                 {routes.reduce((sum, r) => sum + r.activeJeepneys, 0)}
               </div>
               <div className="text-sm text-gray-600">Active Jeepneys</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-1">
+              <div className="text-3xl font-bold text-red-800 mb-1">
                 {routes.filter(r => r.activeJeepneys > 0).length}
               </div>
               <div className="text-sm text-gray-600">Routes with Service</div>

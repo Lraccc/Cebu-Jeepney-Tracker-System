@@ -13,25 +13,25 @@ import Link from "next/link";
  */
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-red-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-indigo-600">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-red-900">
               🚌 Cebu Jeepney Tracker
             </h1>
             <nav className="flex gap-2 sm:gap-4">
               <Link 
                 href="/commuter" 
-                className="text-sm sm:text-base text-gray-600 hover:text-indigo-600 transition"
+                className="text-sm sm:text-base text-gray-600 hover:text-red-900 transition"
               >
                 <span className="hidden sm:inline">Track Jeepneys</span>
                 <span className="sm:hidden">Track</span>
               </Link>
               <Link 
                 href="/auth/login" 
-                className="text-sm sm:text-base text-gray-600 hover:text-indigo-600 transition"
+                className="text-sm sm:text-base text-gray-600 hover:text-red-900 transition"
               >
                 Login
               </Link>
@@ -55,13 +55,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full max-w-md mx-auto sm:max-w-none">
             <Link 
               href="/commuter"
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-indigo-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl text-center"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-red-900 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-red-800 transition shadow-lg hover:shadow-xl text-center"
             >
               🗺️ Track Jeepneys Now
             </Link>
             <Link 
               href="/auth/login"
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-indigo-600 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-50 transition border-2 border-indigo-600 text-center"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-amber-500 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-amber-600 transition border-2 border-amber-500 text-center"
             >
               🔐 Admin / Driver Login
             </Link>
@@ -96,7 +96,7 @@ export default function Home() {
         {/* City Selection (Optional for MVP) */}
         <div className="mt-16 text-center">
           <p className="text-gray-500 text-sm">
-            Currently serving: <span className="font-semibold text-indigo-600">Cebu City</span>
+            Currently serving: <span className="font-semibold text-red-900">Cebu City</span>
           </p>
         </div>
       </main>

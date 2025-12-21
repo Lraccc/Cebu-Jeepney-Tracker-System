@@ -127,17 +127,17 @@ export default function RouteManagementPage() {
             <div>
               <Link 
                 href="/admin" 
-                className="text-sm text-gray-600 hover:text-indigo-600 mb-1 inline-block"
+                className="text-sm text-gray-600 hover:text-red-900 mb-1 inline-block"
               >
                 ← Back to Dashboard
               </Link>
-              <h1 className="text-2xl font-bold text-indigo-600">
+              <h1 className="text-2xl font-bold text-red-900">
                 Route Management
               </h1>
             </div>
             <button
               onClick={handleAddRoute}
-              className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition"
+              className="px-6 py-2 bg-red-900 text-white rounded-lg font-medium hover:bg-red-800 transition"
             >
               ➕ Add New Route
             </button>
@@ -243,13 +243,13 @@ export default function RouteManagementPage() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleViewOnMap(route.id)}
-                        className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition"
+                        className="px-4 py-2 bg-red-900 text-white rounded-lg text-sm font-medium hover:bg-red-800 transition"
                       >
                         🗺️ View on Map
                       </button>
                       <button
                         onClick={() => handleEditRoute(route.id)}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+                        className="px-4 py-2 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition"
                       >
                         ✏️ Edit
                       </button>
@@ -334,21 +334,21 @@ export default function RouteManagementPage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="mt-6 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-lg shadow-md p-6">
+            <div className="mt-6 bg-gradient-to-br from-red-900 to-amber-600 text-white rounded-lg shadow-md p-6">
               <h3 className="text-lg font-bold mb-4">Route Statistics</h3>
               <div className="space-y-3">
                 <div>
-                  <p className="text-indigo-100 text-sm">Total Routes</p>
+                  <p className="text-amber-100 text-sm">Total Routes</p>
                   <p className="text-2xl font-bold">{routes.length}</p>
                 </div>
                 <div>
-                  <p className="text-indigo-100 text-sm">Active Routes</p>
+                  <p className="text-amber-100 text-sm">Active Routes</p>
                   <p className="text-2xl font-bold">
                     {routes.filter((r) => r.status === "active").length}
                   </p>
                 </div>
                 <div>
-                  <p className="text-indigo-100 text-sm">Total Active Jeepneys</p>
+                  <p className="text-amber-100 text-sm">Total Active Jeepneys</p>
                   <p className="text-2xl font-bold">
                     {routes.reduce((sum, r) => sum + r.activeJeepneys, 0)}
                   </p>

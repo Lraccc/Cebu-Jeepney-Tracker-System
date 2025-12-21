@@ -70,7 +70,7 @@ export default function DriverDashboard() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-indigo-600">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-red-900">
               🚗 Driver Dashboard
             </h1>
             <button
@@ -278,19 +278,19 @@ export default function DriverDashboard() {
             </div>
 
             {/* Today's Stats */}
-            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-lg shadow-md p-6">
+            <div className="bg-gradient-to-br from-red-900 to-amber-600 text-white rounded-lg shadow-md p-6">
               <h3 className="text-lg font-bold mb-4">Today's Stats</h3>
               <div className="space-y-3">
                 <div>
-                  <p className="text-indigo-100 text-sm">Hours Online</p>
+                  <p className="text-amber-100 text-sm">Hours Online</p>
                   <p className="text-2xl font-bold">6.5 hrs</p>
                 </div>
                 <div>
-                  <p className="text-indigo-100 text-sm">Total Passengers</p>
+                  <p className="text-amber-100 text-sm">Total Passengers</p>
                   <p className="text-2xl font-bold">127</p>
                 </div>
                 <div>
-                  <p className="text-indigo-100 text-sm">Trips Completed</p>
+                  <p className="text-amber-100 text-sm">Trips Completed</p>
                   <p className="text-2xl font-bold">8</p>
                 </div>
               </div>

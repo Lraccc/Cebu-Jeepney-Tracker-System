@@ -91,7 +91,7 @@ export default function JeepneyDetailsPage({ params }: PageProps) {
         <div className="mb-6">
           <Link 
             href="/commuter"
-            className="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium"
+            className="inline-flex items-center text-red-900 hover:text-red-800 font-medium"
           >
             ← Back to Map
           </Link>
@@ -124,7 +124,7 @@ export default function JeepneyDetailsPage({ params }: PageProps) {
                 {/* Route */}
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Route</p>
-                  <p className="text-lg font-semibold text-indigo-600">
+                  <p className="text-lg font-semibold text-red-900">
                     {jeepney.route}
                   </p>
                 </div>
@@ -195,11 +195,11 @@ export default function JeepneyDetailsPage({ params }: PageProps) {
             </div>
 
             {/* ETA Card */}
-            <div className="bg-indigo-50 rounded-lg shadow-md p-6 border-2 border-indigo-200">
+            <div className="bg-amber-50 rounded-lg shadow-md p-6 border-2 border-amber-200">
               <h2 className="text-lg font-bold text-gray-900 mb-2">
                 Estimated Arrival
               </h2>
-              <p className="text-3xl font-bold text-indigo-600 mb-2">
+              <p className="text-3xl font-bold text-amber-600 mb-2">
                 {jeepney.estimatedArrival}
               </p>
               <p className="text-sm text-gray-600">
@@ -243,12 +243,12 @@ export default function JeepneyDetailsPage({ params }: PageProps) {
               {/* Map Footer - Actions */}
               <div className="bg-gray-50 px-6 py-4 border-t">
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <button className="flex-1 px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition">
+                  <button className="flex-1 px-6 py-3 bg-red-900 text-white rounded-lg font-medium hover:bg-red-800 transition">
                     📍 Enable Location Sharing
                   </button>
                   <Link 
                     href={`/commuter?highlight=${jeepneyId}`}
-                    className="flex-1 px-6 py-3 bg-white text-indigo-600 border-2 border-indigo-600 rounded-lg font-medium hover:bg-gray-50 transition text-center"
+                    className="flex-1 px-6 py-3 bg-amber-500 text-white border-2 border-amber-500 rounded-lg font-medium hover:bg-amber-600 transition text-center"
                   >
                     🗺️ View All Jeepneys
                   </Link>

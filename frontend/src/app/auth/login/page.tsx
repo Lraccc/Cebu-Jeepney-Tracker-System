@@ -47,11 +47,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-amber-100 to-red-50 flex items-center justify-center px-4">
       {/* Back to Home Link */}
       <Link 
         href="/"
-        className="absolute top-6 left-6 flex items-center text-gray-600 hover:text-indigo-600 transition"
+        className="absolute top-6 left-6 flex items-center text-gray-600 hover:text-red-900 transition"
       >
         ← Back to Home
       </Link>
@@ -89,7 +89,7 @@ export default function LoginPage() {
                 onClick={() => setRole("driver")}
                 className={`py-3 px-4 rounded-lg font-medium transition ${
                   role === "driver"
-                    ? "bg-indigo-600 text-white"
+                    ? "bg-red-900 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
@@ -100,7 +100,7 @@ export default function LoginPage() {
                 onClick={() => setRole("admin")}
                 className={`py-3 px-4 rounded-lg font-medium transition ${
                   role === "admin"
-                    ? "bg-indigo-600 text-white"
+                    ? "bg-red-900 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
@@ -121,7 +121,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="your.email@example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-900 focus:border-red-900 transition"
             />
           </div>
 
@@ -137,7 +137,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-900 focus:border-red-900 transition"
             />
           </div>
 
@@ -146,13 +146,13 @@ export default function LoginPage() {
             <label className="flex items-center">
               <input
                 type="checkbox"
-                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                className="rounded border-gray-300 text-red-900 focus:ring-red-900"
               />
               <span className="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
             <button
               type="button"
-              className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+              className="text-sm text-red-900 hover:text-red-800 font-medium"
             >
               Forgot password?
             </button>
@@ -165,7 +165,7 @@ export default function LoginPage() {
             className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition ${
               isLoading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-indigo-600 hover:bg-indigo-700"
+                : "bg-red-900 hover:bg-red-800"
             }`}
           >
             {isLoading ? "Signing in..." : "Sign In"}
@@ -176,7 +176,7 @@ export default function LoginPage() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Commuter?{" "}
-            <Link href="/commuter" className="text-indigo-600 hover:text-indigo-700 font-medium">
+            <Link href="/commuter" className="text-red-900 hover:text-red-800 font-medium">
               No login required →
             </Link>
           </p>

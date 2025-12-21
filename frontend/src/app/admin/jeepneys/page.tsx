@@ -152,17 +152,17 @@ export default function JeepneyManagementPage() {
             <div>
               <Link 
                 href="/admin" 
-                className="text-sm text-gray-600 hover:text-indigo-600 mb-1 inline-block"
+                className="text-sm text-gray-600 hover:text-red-900 mb-1 inline-block"
               >
                 ← Back to Dashboard
               </Link>
-              <h1 className="text-2xl font-bold text-indigo-600">
+              <h1 className="text-2xl font-bold text-red-900">
                 Jeepney Management
               </h1>
             </div>
             <button
               onClick={handleAddJeepney}
-              className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition"
+              className="px-6 py-2 bg-red-900 text-white rounded-lg font-medium hover:bg-red-800 transition"
             >
               ➕ Add New Jeepney
             </button>
@@ -180,7 +180,7 @@ export default function JeepneyManagementPage() {
                 onClick={() => setFilterStatus("all")}
                 className={`px-4 py-2 rounded-lg font-medium transition ${
                   filterStatus === "all"
-                    ? "bg-indigo-600 text-white"
+                    ? "bg-red-900 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
@@ -222,7 +222,7 @@ export default function JeepneyManagementPage() {
             <input
               type="text"
               placeholder="Search by plate number..."
-              className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-900 focus:border-red-900"
             />
           </div>
         </div>
@@ -235,13 +235,13 @@ export default function JeepneyManagementPage() {
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
             >
               {/* Card Header */}
-              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6">
+              <div className="bg-gradient-to-r from-red-900 to-amber-600 text-white p-6">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h3 className="text-2xl font-bold mb-1">
                       {jeepney.plateNumber}
                     </h3>
-                    <p className="text-indigo-100 text-sm">{jeepney.model}</p>
+                    <p className="text-amber-100 text-sm">{jeepney.model}</p>
                   </div>
                   <span className="text-3xl">{getStatusIcon(jeepney.status)}</span>
                 </div>
@@ -377,8 +377,8 @@ export default function JeepneyManagementPage() {
               {jeepneys.filter((j) => j.status === "maintenance").length}
             </p>
           </div>
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-6">
-            <p className="text-blue-100 text-sm mb-1">Total Fleet</p>
+          <div className="bg-gradient-to-br from-red-900 to-amber-600 text-white rounded-lg p-6">
+            <p className="text-amber-100 text-sm mb-1">Total Fleet</p>
             <p className="text-3xl font-bold">{jeepneys.length}</p>
           </div>
         </div>

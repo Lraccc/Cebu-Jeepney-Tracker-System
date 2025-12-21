@@ -32,13 +32,13 @@ export default function CommuterDashboard() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="text-base sm:text-lg md:text-xl font-bold text-indigo-600 hover:text-indigo-700">
+            <Link href="/" className="text-base sm:text-lg md:text-xl font-bold text-red-900 hover:text-red-800">
               🚌 Cebu Jeepney Tracker
             </Link>
             <nav className="flex gap-2 sm:gap-4">
               <Link 
                 href="/commuter/routes" 
-                className="px-2 sm:px-4 py-2 text-sm sm:text-base text-gray-700 hover:text-indigo-600 transition"
+                className="px-2 sm:px-4 py-2 text-sm sm:text-base text-gray-700 hover:text-red-900 transition"
               >
                 <span className="hidden sm:inline">View Routes</span>
                 <span className="sm:hidden">Routes</span>
@@ -79,7 +79,7 @@ export default function CommuterDashboard() {
               <input
                 type="text"
                 placeholder="Enter destination..."
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-900 focus:border-red-900"
               />
             </div>
 
@@ -87,7 +87,7 @@ export default function CommuterDashboard() {
             <div className="space-y-3 mb-6">
               <Link 
                 href="/commuter/routes"
-                className="block w-full px-4 py-3 bg-indigo-600 text-white rounded-lg text-center font-medium hover:bg-indigo-700 transition"
+                className="block w-full px-4 py-3 bg-red-900 text-white rounded-lg text-center font-medium hover:bg-red-800 transition"
               >
                 📋 Browse All Routes
               </Link>
