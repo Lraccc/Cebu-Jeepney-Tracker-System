@@ -25,48 +25,94 @@ import MapComponent from "@/components/MapComponent";
  * - Retractable sidebar panel
  */
 export default function CommuterDashboard() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [searchCode, setSearchCode] = useState("");
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [selectedJeepney, setSelectedJeepney] = useState<any>(null);
   
   // Sample data - replace with real data from your backend
-  const sampleJeepneys = [
+  const allJeepneys = [
     {
       id: '1',
       position: { lat: 10.3157, lng: 123.8854 },
       plateNumber: 'ABC 123',
-      route: 'Route 04B',
-      availableSeats: 12
+      code: '04B',
+      route: 'IT Park → Colon',
+      availableSeats: 12,
+      totalSeats: 16
     },
     {
       id: '2',
       position: { lat: 10.3200, lng: 123.8900 },
       plateNumber: 'XYZ 789',
-      route: 'Route 10H',
-      availableSeats: 5
+      code: '10H',
+      route: 'SM → Ayala',
+      availableSeats: 5,
+      totalSeats: 16
+    },
+    {
+      id: '3',
+      position: { lat: 10.3100, lng: 123.8800 },
+      plateNumber: 'DEF 456',
+      code: '04B',
+      route: 'IT Park → Colon',
+      availableSeats: 8,
+      totalSeats: 16
     }
   ];
 
-  const sampleRoutes = [
+  const allRoutes = [
     {
-      id: 'route1',
+      id: 'route-04B',
       name: 'Route 04B',
+      code: '04B',
       color: '#EF4444',
       path: [
         { lat: 10.3157, lng: 123.8854 },
         { lat: 10.3200, lng: 123.8900 },
         { lat: 10.3250, lng: 123.8950 }
       ]
+    },
+    {
+      id: 'route-10H',
+      name: 'Route 10H',
+      code: '10H',
+      color: '#3B82F6',
+      path: [
+        { lat: 10.3200, lng: 123.8900 },
+        { lat: 10.3150, lng: 123.8920 },
+        { lat: 10.3100, lng: 123.8940 }
+      ]
     }
   ];
 
+  // Filter based on search
+  const filteredJeepneys = searchCode 
+    ? allJeepneys.filter(j => j.code.toLowerCase().includes(searchCode.toLowerCase()))
+    : allJeepneys;
+
+  const filteredRoutes = searchCode
+    ? allRoutes.filter(r => r.code.toLowerCase().includes(searchCode.toLowerCase()))
+    : allRoutes;
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchCode) {
+      setIsPanelOpen(true);
+      const found = allJeepneys.find(j => j.code.toLowerCase() === searchCode.toLowerCase());
+      setSelectedJeepney(found || null);
+    }
+  };
+
   const handleJeepneyClick = (jeepney: any) => {
-    console.log('Jeepney clicked:', jeepney);
-    // You can add logic to show details, navigate, etc.
+    setSelectedJeepney(jeepney);
+    setSearchCode(jeepney.code);
+    setIsPanelOpen(true);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col h-screen overflow-hidden">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white shadow-sm border-b flex-shrink-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
             <Link href="/" className="text-base sm:text-lg md:text-xl font-bold text-red-900 hover:text-red-800">
@@ -91,122 +137,152 @@ export default function CommuterDashboard() {
         </div>
       </header>
 
-      <div className="flex flex-col md:flex-row h-[calc(100vh-73px)] relative">
-        {/* Sidebar - Controls & Info */}
-        <aside 
-          className={`
-            bg-white border-b md:border-r md:border-b-0 overflow-y-auto
-            transition-all duration-300 ease-in-out
-            ${isSidebarOpen 
-              ? 'w-full md:w-80 max-h-[40vh] md:max-h-none' 
-              : 'w-0 md:w-0 max-h-0 md:max-h-none overflow-hidden'
-            }
-          `}
-        >
-          <div className="p-4 sm:p-6">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
-              Live Jeepney Tracker
-            </h2>
-            
-            {/* Optional: Destination Input (MVP) */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Where are you going?
-              </label>
-              <input
-                type="text"
-                placeholder="Enter destination..."
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-900 focus:border-red-900"
-              />
-            </div>
-
-            {/* Quick Actions */}
-            <div className="space-y-3 mb-6">
-              <Link 
-                href="/commuter/routes"
-                className="block w-full px-4 py-3 bg-red-900 text-white rounded-lg text-center font-medium hover:bg-red-800 transition"
-              >
-                📋 Browse All Routes
-              </Link>
-            </div>
-
-            {/* Legend */}
-            <div className="border-t pt-6">
-              <h3 className="font-semibold text-gray-800 mb-3">Map Legend</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                  <span>Available Seats (5+)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
-                  <span>Limited Seats (1-4)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <span>Full</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-blue-400 border-2 border-blue-600"></div>
-                  <span>Route Path</span>
-                </div>
+      {/* Search Panel */}
+      <div className="bg-white border-b shadow-sm flex-shrink-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+          <form onSubmit={handleSearch} className="flex gap-3 items-center">
+            <div className="flex-1 max-w-2xl">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchCode}
+                  onChange={(e) => setSearchCode(e.target.value)}
+                  placeholder="Enter jeepney code (e.g., 04B, 10H)..."
+                  className="w-full px-4 py-2.5 pr-12 border rounded-lg focus:ring-2 focus:ring-red-900 focus:border-red-900 text-base text-gray-900 placeholder:text-gray-400"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-red-900 text-white rounded-md hover:bg-red-800 transition text-sm font-medium"
+                >
+                  Search
+                </button>
               </div>
             </div>
+            <button
+              type="button"
+              onClick={() => setIsPanelOpen(!isPanelOpen)}
+              className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition font-medium text-sm sm:text-base whitespace-nowrap"
+            >
+              {isPanelOpen ? '▼ Hide Info' : '▶ Show Info'}
+            </button>
+          </form>
+        </div>
 
-            {/* Active Jeepneys Summary */}
-            <div className="border-t mt-6 pt-6">
-              <h3 className="font-semibold text-gray-800 mb-3">
-                Active Jeepneys
-              </h3>
-              <div className="space-y-2">
-                {/* Placeholder data - will be dynamic */}
-                <div className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-medium">IT Park → Colon</p>
-                      <p className="text-sm text-gray-500">12 active</p>
-                    </div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+        {/* Info Panel - Collapsible */}
+        {isPanelOpen && (
+          <div className="border-t bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Left: Search Results */}
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-3">
+                    {searchCode ? `Results for "${searchCode}"` : 'All Active Jeepneys'}
+                  </h3>
+                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                    {filteredJeepneys.length > 0 ? (
+                      filteredJeepneys.map((jeepney) => (
+                        <div
+                          key={jeepney.id}
+                          onClick={() => handleJeepneyClick(jeepney)}
+                          className={`p-3 rounded-lg cursor-pointer transition ${
+                            selectedJeepney?.id === jeepney.id
+                              ? 'bg-red-100 border border-red-300'
+                              : 'bg-white hover:bg-gray-100 border border-gray-200'
+                          }`}
+                        >
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-red-900">{jeepney.code}</span>
+                                <span className="text-sm text-gray-600">•</span>
+                                <span className="text-sm font-medium">{jeepney.plateNumber}</span>
+                              </div>
+                              <p className="text-sm text-gray-600 mt-1">{jeepney.route}</p>
+                            </div>
+                            <div className="text-right">
+                              <div className={`text-sm font-semibold ${
+                                jeepney.availableSeats > 5 ? 'text-green-600' :
+                                jeepney.availableSeats > 0 ? 'text-yellow-600' : 'text-red-600'
+                              }`}>
+                                {jeepney.availableSeats}/{jeepney.totalSeats}
+                              </div>
+                              <div className="text-xs text-gray-500">seats</div>
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-gray-500 text-sm py-4 text-center">
+                        No jeepneys found with code "{searchCode}"
+                      </p>
+                    )}
                   </div>
                 </div>
-                <div className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-medium">SM → Ayala</p>
-                      <p className="text-sm text-gray-500">8 active</p>
-                    </div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  </div>
+
+                {/* Right: Selected Jeepney Info or Legend */}
+                <div>
+                  {selectedJeepney ? (
+                    <>
+                      <h3 className="font-semibold text-gray-800 mb-3">Selected Jeepney</h3>
+                      <div className="bg-white p-4 rounded-lg border">
+                        <div className="space-y-2">
+                          <div>
+                            <span className="text-sm text-gray-500">Code:</span>
+                            <span className="ml-2 font-bold text-red-900 text-lg">{selectedJeepney.code}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm text-gray-500">Plate Number:</span>
+                            <span className="ml-2 font-medium">{selectedJeepney.plateNumber}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm text-gray-500">Route:</span>
+                            <span className="ml-2 font-medium">{selectedJeepney.route}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm text-gray-500">Available Seats:</span>
+                            <span className={`ml-2 font-bold ${
+                              selectedJeepney.availableSeats > 5 ? 'text-green-600' :
+                              selectedJeepney.availableSeats > 0 ? 'text-yellow-600' : 'text-red-600'
+                            }`}>
+                              {selectedJeepney.availableSeats} / {selectedJeepney.totalSeats}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className="font-semibold text-gray-800 mb-3">Map Legend</h3>
+                      <div className="bg-white p-4 rounded-lg border space-y-2 text-sm">
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                          <span>Available Seats (5+)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
+                          <span>Limited Seats (1-4)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                          <span>Full</span>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        </aside>
+        )}
+      </div>
 
-        {/* Main Map Area */}
-        <main className="flex-1 relative">
-          {/* Toggle Button */}
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="absolute top-4 left-4 z-10 bg-white rounded-lg shadow-lg p-3 hover:bg-gray-50 transition-all duration-200 group"
-            aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
-          >
-            <div className="flex flex-col gap-1.5 w-6">
-              <div className={`h-0.5 bg-gray-700 transition-all duration-300 ${isSidebarOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-              <div className={`h-0.5 bg-gray-700 transition-all duration-300 ${isSidebarOpen ? 'opacity-0' : 'opacity-100'}`}></div>
-              <div className={`h-0.5 bg-gray-700 transition-all duration-300 ${isSidebarOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
-            </div>
-          </button>
-
-          {/* Google Map */}
-          <div className="w-full h-full">
-            <MapComponent 
-              jeepneys={sampleJeepneys}
-              routes={sampleRoutes}
-              onJeepneyClick={handleJeepneyClick}
-            />
-          </div>
-        </main>
+      {/* Map Area */}
+      <div className="flex-1 min-h-0 relative">
+        <MapComponent 
+          jeepneys={filteredJeepneys}
+          routes={filteredRoutes}
+          onJeepneyClick={handleJeepneyClick}
+        />
       </div>
     </div>
   );
