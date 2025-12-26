@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: sakay-cebu-frontend
+    runtime: node
+    region: oregon # or singapore for closer to Philippines
+    plan: free # change to starter or higher for production
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add your Google Maps API key here
+      - key: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+        sync: false # Set this in Render dashboard

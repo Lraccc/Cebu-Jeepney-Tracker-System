@@ -116,7 +116,7 @@ export default function CommuterDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
             <Link href="/" className="text-base sm:text-lg md:text-xl font-bold text-red-900 hover:text-red-800">
-              🚌 Cebu Jeepney Tracker
+              🚌 Sakay Cebu
             </Link>
             <nav className="flex gap-2 sm:gap-4">
               <Link 

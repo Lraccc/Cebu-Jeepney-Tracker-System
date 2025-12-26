@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cebu Jeepney Tracker | Real-time Jeepney Tracking System",
+  title: "Sakay Cebu | Real-time Jeepney Tracking System",
   description: "Track jeepneys in real-time across Cebu City. Find routes, check seat availability, and plan your commute with ease.",
 };
 
